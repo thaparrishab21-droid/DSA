@@ -14,21 +14,23 @@ int f4(int ind,int buy,int n,int cap,vector<int>& prices,vector<vector<vector<in
     }
     int maxProfit(vector<int>& prices) {
         int n=prices.size();
-        vector<vector<vector<double>>>dp(n+1,vector<vector<double>>(2,vector<double>(3,0)));
+        vector<vector<int>>ahead(2,vector<int>(3,0));
+        vector<vector<int>>curr(2,vector<int>(3,0));
         for(int ind=n-1;ind>=0;ind--){
             for(int buy=0;buy<2;buy++){
                 for(int cap=1;cap<=2;cap++){
                     if(buy){
-                        dp[ind][buy][cap]=max(-prices[ind]+dp[ind+1][0][cap],
-                                                dp[ind+1][1][cap]);
+                        curr[buy][cap]=max(-prices[ind]+ahead[0][cap],
+                                                ahead[1][cap]);
                     }
                     else{
-                        dp[ind][buy][cap]=max(prices[ind]+dp[ind+1][1][cap-1],
-                                                dp[ind+1][0][cap]);
+                        curr[buy][cap]=max(prices[ind]+ahead[1][cap-1],
+                                                ahead[0][cap]);
                     }
                 }
+                ahead=curr;
             }
         }
-        return (int)dp[0][1][2];
+        return ahead[1][2];
     }
 };
