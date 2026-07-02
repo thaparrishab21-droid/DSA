@@ -14,7 +14,18 @@ public:
         int n=nums.size();
         nums.push_back(1);
         nums.insert(nums.begin(),1);
-        vector<vector<int>>dp(n+1,vector<int>(n+1,-1));
-        return f9(1,n,nums,dp);
+        int maxi=-1e9;
+        vector<vector<int>>dp(n+2,vector<int>(n+2,0));
+        for(int i=n;i>=1;i--){
+            for(int j=i;j<=n;j++){
+                int maxi=-1e9;
+                for(int ind=i;ind<=j;ind++){
+                    int points=nums[i-1]*nums[ind]*nums[j+1]+dp[i][ind-1]+dp[ind+1][j];
+                    maxi=max(maxi,points);
+                }
+                dp[i][j]=maxi;
+            }
+        }
+        return dp[1][n];
     }
 };
