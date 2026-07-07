@@ -22,6 +22,5 @@ public:
             }
             reverse(nums.begin()+ind+1,nums.end());
         }
-        for(auto it:nums) cout<<it<<",";
     }
 };
