@@ -2,37 +2,46 @@ class Solution {
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
 
-        int n = nums1.size();
-        int m = nums2.size();
+        if(nums1.size() > nums2.size())
+            swap(nums1, nums2);
 
-        int l = 0, r = 0;
-        vector<int> sorted;
+        int n1 = nums1.size();
+        int n2 = nums2.size();
 
-        while (l < n && r < m) {
-            if (nums1[l] <= nums2[r]) {
-                sorted.push_back(nums1[l]);
-                l++;
-            } else {
-                sorted.push_back(nums2[r]);
-                r++;
+        int s = 0;
+        int e = n1;
+
+        int leftLength = (n1 + n2 + 1) / 2;
+
+        while(s <= e){
+
+            int mid1 = (s + e) / 2;
+            int mid2 = leftLength - mid1;
+
+            int l1 = INT_MIN, l2 = INT_MIN;
+            int r1 = INT_MAX, r2 = INT_MAX;
+
+            if(mid1 < n1) r1 = nums1[mid1];
+            if(mid2 < n2) r2 = nums2[mid2];
+
+            if(mid1 > 0) l1 = nums1[mid1-1];
+            if(mid2 > 0) l2 = nums2[mid2-1];
+
+            if(l1 <= r2 && l2 <= r1){
+
+                if((n1+n2)%2==0)
+                    return (max(l1,l2)+min(r1,r2))/2.0;
+
+                return max(l1,l2);
             }
+
+            else if(l1 > r2)
+                e = mid1-1;
+
+            else
+                s = mid1+1;
         }
 
-        while (l < n) {
-            sorted.push_back(nums1[l]);
-            l++;
-        }
-
-        while (r < m) {
-            sorted.push_back(nums2[r]);
-            r++;
-        }
-
-        int total = n + m;
-
-        if (total % 2 == 1)
-            return sorted[total / 2];
-
-        return (sorted[total / 2] + sorted[total / 2 - 1]) / 2.0;
+        return 0;
     }
 };
