@@ -23,7 +23,7 @@ public:
     string ans;
     while(!st.empty())
     {
-        ans +=(char)st.top();
+        ans +=st.top();
         st.pop();
     }
     n=ans.size();
