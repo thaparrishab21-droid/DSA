@@ -2,14 +2,11 @@ class Solution {
 public:
     bool isOneBitCharacter(vector<int>& bits) {
         int n=bits.size();
-        int cnt=0;
-        if(n==1 || bits[n-2]==0) return true;
-        else{
-            for(int i=n-2;i>=0;i--){
-                if(bits[i]==0) break;
-                else cnt++;
-            }
+        int ind=0;
+        while(ind<n-1){
+            if(bits[ind]==0) ind++;
+            else ind+=2;
         }
-        return (cnt%2)? false : true;
+        return ind==n-1;
     }
 };
