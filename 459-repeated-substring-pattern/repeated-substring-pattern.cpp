@@ -3,19 +3,27 @@ public:
     bool repeatedSubstringPattern(string s) {
         int n = s.size();
 
-        for (int len = 1; len <= n / 2; len++) {
-            if (n % len != 0) continue;
-
-            string pattern = s.substr(0, len);
-            string temp = "";
-
-            while (temp.size() < n)
-                temp += pattern;
-
-            if (temp == s)
-                return true;
+        vector<int>lps(n,0);
+        int i=1;
+        int len=0;
+        while(i<n){
+            if(s[i]==s[len]){
+                lps[i]=++len;
+                i++;
+            }
+            else{
+                if(len!=0){
+                    len=lps[len-1];
+                }
+                else {
+                    lps[i]=0;
+                    i++;
+                }
+            }
         }
+        int longestPrefixSuffix = lps[n - 1];
 
-        return false;
+        return longestPrefixSuffix > 0 &&
+               n % (n - longestPrefixSuffix) == 0;
     }
 };
