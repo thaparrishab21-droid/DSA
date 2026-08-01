@@ -5,14 +5,12 @@ public:
         int cnt=0;
         int maxi=0;
         for(int i=0;i<n;i++){
-            if(weight[i]>maxi){
-                maxi=weight[i];
-            }
-            else if(weight[i]==maxi) continue;
-            else{
+            maxi=max(maxi,weight[i]);
+            if(weight[i]<maxi){
                 cnt++;
                 maxi=0;
             }
+            
         }
         return cnt;
     }
