@@ -14,7 +14,7 @@ public:
             
         }
         sort(nums1.begin(), nums1.begin() + m);
-            sort(nums2.begin(), nums2.end());   
+        sort(nums2.begin(), nums2.end());   
             for(int i=0;i<n;i++){
                 nums1[m + i] = nums2[i];
             }
