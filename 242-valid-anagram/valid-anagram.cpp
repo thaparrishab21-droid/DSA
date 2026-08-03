@@ -7,7 +7,7 @@ public:
             mp[c-'a']++;
         }
         for(char c:t){
-            if(mp.find(c-'a')==mp.end()|| mp[c-'a'] == 0) return false;
+            if(mp.find(c-'a')==mp.end() || mp[c-'a'] == 0) return false;
             else{
                 mp[c-'a']--;
             }
