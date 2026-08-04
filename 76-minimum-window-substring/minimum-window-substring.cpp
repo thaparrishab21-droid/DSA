@@ -30,8 +30,7 @@ public:
                 l++;
             }
         }
-                if(minlen == INT_MAX)
-            return "";
+        if(minlen == INT_MAX) return "";
 
         return s.substr(start, minlen);
 
