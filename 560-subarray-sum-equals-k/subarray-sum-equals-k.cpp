@@ -8,11 +8,13 @@ public:
         mpp[0]=1;
         for(int i=0;i<n;i++){
             sum+=nums[i];
-            if(mpp.count(sum-k)){
-                cnt+=mpp[sum-k];
+            int m=sum-k;
+            if(mpp.find(m)!=mpp.end()){
+                cnt+=mpp[m];
             }
             mpp[sum]++;
         }
         return cnt;
     }
+
 };
