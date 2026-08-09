@@ -18,7 +18,7 @@ public:
         return node;
     }
     ListNode* reverseKGroup(ListNode* head, int k) {
-        ListNode* dummy=new ListNode();
+        ListNode* dummy= new ListNode();
         dummy->next=head;
         ListNode* groupprev=dummy;
         while(true){
@@ -28,10 +28,10 @@ public:
             ListNode* prev=groupnext;
             ListNode* curr=groupprev->next;
             for(int i=0;i<k;i++){
-                ListNode* next=curr->next;
+                ListNode* front=curr->next;
                 curr->next=prev;
                 prev=curr;
-                curr=next;
+                curr=front;
             }
             ListNode* temp=groupprev->next;
             groupprev->next=kth;
