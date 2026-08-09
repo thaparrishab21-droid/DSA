@@ -6,7 +6,6 @@ public:
         int best=0;
         int total=suffix[i];
         for(int x=1;x<=2*m && i+x<=piles.size();x++){
-            int remaining=suffix[i+x];
             int opp=check(i+x,max(x,m),piles,dp,suffix);
             best=max(best,total-opp);
         }
