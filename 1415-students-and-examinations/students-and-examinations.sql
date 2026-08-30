@@ -5,5 +5,5 @@ cross join Subjects su
 left join Examinations e
 on s.student_id=e.student_id
 and su.subject_name=e.subject_name
-GROUP BY S.student_id, S.student_name, SU.subject_name
+GROUP BY S.student_id,SU.subject_name
 ORDER BY S.student_id
