@@ -4,5 +4,5 @@ where id in(
     select managerID
     from Employee
     group by managerID
-    having count(managerID)>=5
+    having count(id)>=5
 )
